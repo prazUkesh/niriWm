@@ -1,5 +1,10 @@
 spawn-at-startup "hyprpaper"
 spawn-at-startup "ghostty"
+spawn-at-startup "xwayland-satellite"
+environment {
+  DISPLAY ":0"
+}
+
 hotkey-overlay {
     skip-at-startup
 }
@@ -8,7 +13,7 @@ input {
         xkb {
 
              layout "us"
-			 options "compose:ralt,ctrl:nocaps"
+                         options "compose:ralt,ctrl:nocaps"
         }
     }
 
@@ -26,8 +31,8 @@ input {
     }
 
     warp-mouse-to-focus
-	focus-follows-mouse
-	workspace-auto-back-and-forth
+        focus-follows-mouse
+        workspace-auto-back-and-forth
 
 }
 
@@ -38,7 +43,7 @@ output "eDP-1" {
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
     transform "normal"
     position x=1280 y=0
-	variable-refresh-rate
+        variable-refresh-rate
 }
 
 
@@ -58,7 +63,7 @@ layout {
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
-		proportion 0.25
+                proportion 0.25
     }
 
     default-column-width { proportion 0.5; }
@@ -136,20 +141,20 @@ animations {
         curve "ease-out-cubic"
     }
 
-	workspace-switch {
+        workspace-switch {
         spring damping-ratio=0.4 stiffness=700 epsilon=0.0001
     }
 
-	window-close {
+        window-close {
         duration-ms 600
         curve "ease-out-cubic"
     }
 
-	horizontal-view-movement {
+        horizontal-view-movement {
         spring damping-ratio=0.5 stiffness=700 epsilon=0.0001
     }
 
-	screenshot-ui-open {
+        screenshot-ui-open {
         duration-ms 200
         curve "ease-out-quad"
     }
@@ -170,8 +175,8 @@ window-rule {
 window-rule {
     geometry-corner-radius 30
     clip-to-geometry true
-	opacity 0.99
-	draw-border-with-background false
+        opacity 0.99
+        draw-border-with-background false
 }
 
 window-rule {
@@ -206,8 +211,10 @@ window-rule {
 
 binds {
     Mod+X { spawn "ghostty"; }
-    Mod+Space { spawn "wofi --show drun"; }
-    Mod+Alt+Space { spawn "wofi --show drun"; }
+    Mod+A { spawn "code";  }
+    Mod+D { spawn "wofi -show drun";  }
+  //  Mod+C { spawn "wofi --show drun";  }
+    Mod+Shift+D { spawn "/run/current-system/sw/bin/wofi --show run";  }
     Mod+Alt+L { spawn "hyprlock"; }
 
     XF86MonBrightnessUp allow-when-locked=true {
@@ -224,13 +231,13 @@ binds {
     XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
 
     Mod+Q { close-window; }
-	Mod+E { spawn "nemo";}
-	Mod+B { spawn "brave";}
-	Mod+Shift+W { spawn "bash" "-c" "pkill waybar || waybar &";}
-	Mod+0 { spawn "bash" "-c" "shutdown now";}
-	Ctrl+Shift+R { spawn "bash" "-c" "sudo reboot";}
+        Mod+E { spawn "nemo";}
+        Mod+B { spawn "brave";}
+        Mod+Shift+W { spawn "bash" "-c" "pkill waybar || waybar &";}
+        Mod+0 { spawn "bash" "-c" "shutdown now";}
+        Ctrl+Shift+R { spawn "bash" "-c" "sudo reboot";}
 
-    Mod+Left  { focus-column-left; }
+    Mod+Left  { focus-column-left;}
     Mod+Down  { focus-window-down; }
     Mod+Up    { focus-window-up; }
     Mod+Right { focus-column-right; }
@@ -362,4 +369,3 @@ Mod+Ctrl+Left  { move-column-left; }
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
-}
