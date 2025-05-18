@@ -1,0 +1,9 @@
+fastfetch
+
+eval "$(starship init bash)"
+
+alias nix='sudo vim /etc/nixos/configuration.nix'
+alias nirix='sudo vim ~/.config/niri/config.kdl'
+alias rld='source ~/.bashrc'
+
+alias rebuild='sudo nixos-rebuild switch'
